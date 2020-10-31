@@ -32,6 +32,25 @@ def spiral(dim):
     return arr_spiral
 
 
+def zigzag(dim):
+
+    arr_zigzag = np.zeros((dim, dim), dtype='uint')
+    start = 0
+    row = 0
+    odd = True
+
+    for i in range(dim, dim * dim + 1, dim):
+        if odd:
+            arr_zigzag[row, :] = np.arange(start, i).tolist()
+        else:
+            arr_zigzag[row, :] = np.asarray(list(reversed(np.arange(start, i).tolist())))
+        odd = not odd
+        start = i
+        row += 1
+
+    return arr_zigzag
+
+
 # Credit for primesfrom2to function goes to Robert William Hanks:
 # https://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n/3035188#3035188
 def primesfrom2to(n):
@@ -55,8 +74,11 @@ p1 = p1[:n_side * n_side]
 n = len(p1)
 n_side = int(math.sqrt(n))
 
-spiral_idx = spiral(n_side) - 1     # make spiral index
+# zigzag_idx = zigzag(n_side)     # make zigzag index
+# prime_digits = p1[zigzag_idx]    # put primes sequence in zigzag
 
+# uncomment one; this or zizzag(above) for differnet arrangement 
+spiral_idx = spiral(n_side) - 1     # make spiral index
 prime_digits = p1[spiral_idx]    # put primes sequence in spiral
 
 x = np.arange(0, n_side, 1)
