@@ -94,4 +94,5 @@ fig = mlab.figure(bgcolor=(0, 0, 0), size=(1280, 1024))
 s = mlab.barchart(xs, ys, dz, opacity=1, colormap='spectral', extent=(0, 2, 0, 2, 0, 0.001))
 s.glyph.color_mode = 'color_by_vector'
 
+mlab.savefig('babylon_1.obj')
 mlab.show()
